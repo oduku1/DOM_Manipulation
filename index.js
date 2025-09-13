@@ -57,22 +57,17 @@ topMenuEl.addEventListener("click", (event) => {
 
 
   topMenuArray()
-  // remove active from all other links
   topMenuLinks.forEach(link => {
     if (link !== event.target) link.classList.remove("active");
   });
 
-  // ✅ Toggle active FIRST
   event.target.classList.toggle("active");
 
-  // clear out submenu each click
   subMenu.innerHTML = "";
 
-  // cache clicked link object
   const linkObj = menuLinks.find(link => link.text === event.target.textContent);
 
   if (event.target.classList.contains("active") && linkObj.subLinks) {
-    // show + populate submenu
     linkObj.subLinks.forEach(subLink => {
       const a = document.createElement("a");
       a.setAttribute("href", subLink.href);
@@ -81,7 +76,6 @@ topMenuEl.addEventListener("click", (event) => {
     });
     subMenu.style.top = "100%";
   } else {
-    // hide submenu
     subMenu.style.top = "0";
   }
 });
